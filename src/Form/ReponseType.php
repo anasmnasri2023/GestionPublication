@@ -20,7 +20,9 @@ class ReponseType extends AbstractType
             ])
             ->add('idCommentaire', EntityType::class, [
                 'class' => Commentaire::class,
-                'choice_label' => 'id',
+                'choice_label' => 'contenu', // Use 'contenu' or another meaningful field
+                // Optionally, you can create a custom label using a callback
+                // 'choice_label' => fn(Commentaire $commentaire) => $commentaire->getIdCommentaire() . ' - ' . $commentaire->getContenu(),
             ])
         ;
     }
