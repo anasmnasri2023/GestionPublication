@@ -28,17 +28,17 @@ final class CommentaireController extends AbstractController
     #[Route('/stats', name: 'app_commentaire_stats', methods: ['GET'])]
     public function stats(EntityManagerInterface $entityManager): Response
     {
-        // Total number of comments
+        
         $totalComments = $entityManager->getRepository(Commentaire::class)->count([]);
 
-        // Average likes and dislikes
+        
         $likesDislikesStats = $entityManager->getRepository(Commentaire::class)
             ->createQueryBuilder('c')
             ->select('AVG(c.likes) as avgLikes, AVG(c.dislikes) as avgDislikes')
             ->getQuery()
             ->getSingleResult();
 
-        // Total likes and dislikes
+        
         $totalLikesDislikes = $entityManager->getRepository(Commentaire::class)
             ->createQueryBuilder('c')
             ->select('SUM(c.likes) as totalLikes, SUM(c.dislikes) as totalDislikes')
